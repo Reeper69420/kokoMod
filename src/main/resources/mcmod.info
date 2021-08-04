@@ -1,0 +1,16 @@
+[
+{
+  "modid": "kokoMod",
+  "name": "kokoniara's mod",
+  "description": "this mod is a code playground.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["kokoniara"],
+  "credits": "All the guys i stole code from",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
