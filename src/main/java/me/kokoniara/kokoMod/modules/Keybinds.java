@@ -9,17 +9,20 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import org.lwjgl.input.Keyboard;
 
+
 public class Keybinds {
     private Minecraft client = Minecraft.getMinecraft();
 
     //making the keybind objects
-    public static KeyBinding autoclicker = new KeyBinding("autoclicker toggle", Keyboard.KEY_H, "kokomods");
-    public static KeyBinding batEspkeybind = new KeyBinding("bat esp toggle", Keyboard.KEY_V, "kokomods");
-    public static KeyBinding toggleSprintKeybind = new KeyBinding("togglesprint", Keyboard.KEY_J, "kokomods");
-    public static KeyBinding caneFarmHelper = new KeyBinding("cane farming helper", Keyboard.KEY_8, "kokomods");
+    private static KeyBinding autoclicker = new KeyBinding("autoclicker toggle", Keyboard.KEY_H, "kokomods");
+    private static KeyBinding batEspkeybind = new KeyBinding("bat esp toggle", Keyboard.KEY_V, "kokomods");
+    private static KeyBinding toggleSprintKeybind = new KeyBinding("togglesprint", Keyboard.KEY_J, "kokomods");
+    private static KeyBinding caneFarmHelper = new KeyBinding("cane farming helper", Keyboard.KEY_8, "kokomods");
+
+
 
     //registering the keybind objects
-    public static void registerKeybinds() {
+    public Keybinds() {
         ClientRegistry.registerKeyBinding(batEspkeybind);
         ClientRegistry.registerKeyBinding(autoclicker);
         ClientRegistry.registerKeyBinding(toggleSprintKeybind);
@@ -29,35 +32,44 @@ public class Keybinds {
     @SubscribeEvent
     public void onKeyInput(InputEvent.KeyInputEvent event) {
 
-        if (Keybinds.batEspkeybind.isPressed()) {
-            util.sendClientMessage(" batEsp toggled!", true);
-            kokoMod.batEspToggle = !kokoMod.batEspToggle;
+        if (batEspkeybind.isPressed()) {
+            kokoMod.objectsi.batEspinstance.toggled = !kokoMod.objectsi.batEspinstance.toggled;
+            if(kokoMod.objectsi.batEspinstance.toggled){
+                kokoMod.objectsi.batEspinstance.onEnable();
+            }else {
+                kokoMod.objectsi.batEspinstance.onDisable();
+            }
+
         }
 
-        if (Keybinds.toggleSprintKeybind.isPressed()) {
-            kokoMod.toggleSprintStatus = !kokoMod.toggleSprintStatus;
-            if(kokoMod.toggleSprintStatus){
-                kokoMod.toggleSprintinstance.onEnable();
-            }else if(!kokoMod.toggleSprintStatus){
-                kokoMod.toggleSprintinstance.onDisable();
+
+
+        if (toggleSprintKeybind.isPressed()) {
+            kokoMod.objectsi.toggleSprintinstance.toggled = !kokoMod.objectsi.toggleSprintinstance.toggled;
+            if(kokoMod.objectsi.toggleSprintinstance.toggled){
+                kokoMod.objectsi.toggleSprintinstance.onEnable();
+            }else if(!kokoMod.objectsi.toggleSprintinstance.toggled){
+                kokoMod.objectsi.toggleSprintinstance.onDisable();
             }
         }
 
-        if (Keybinds.autoclicker.isPressed()) {
-            kokoMod.autoClikerStatus = !kokoMod.autoClikerStatus;
-            if(kokoMod.autoClikerStatus){
-                kokoMod.autoClikerinstance.onEnable();
-            }else if(!kokoMod.autoClikerStatus){
-                kokoMod.autoClikerinstance.onDisable();
+        if (autoclicker.isPressed()) {
+            kokoMod.objectsi.autoClikerinstance.toggled = !kokoMod.objectsi.autoClikerinstance.toggled;
+            if(kokoMod.objectsi.autoClikerinstance.toggled){
+                kokoMod.objectsi.autoClikerinstance.onEnable();
+            }else if(!kokoMod.objectsi.autoClikerinstance.toggled){
+                kokoMod.objectsi.autoClikerinstance.onDisable();
             }
         }
 
-        if(Keybinds.caneFarmHelper.isPressed()){
-            kokoMod.caneFarmHelperStatus = !kokoMod.caneFarmHelperStatus;
-            if(kokoMod.caneFarmHelperStatus){
-                kokoMod.farmReadyinstance.onEnable();
-            }else if(!kokoMod.caneFarmHelperStatus){
-                kokoMod.farmReadyinstance.onDisable();
+
+
+        if(caneFarmHelper.isPressed()){
+            kokoMod.objectsi.farmReadyinstance.toggled = !kokoMod.objectsi.farmReadyinstance.toggled;
+            if(kokoMod.objectsi.farmReadyinstance.toggled){
+                kokoMod.objectsi.farmReadyinstance.onEnable();
+            }else if(!kokoMod.objectsi.farmReadyinstance.toggled){
+                kokoMod.objectsi.farmReadyinstance.onDisable();
             }
         }
     }

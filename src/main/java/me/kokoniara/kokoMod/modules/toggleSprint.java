@@ -1,21 +1,23 @@
 package me.kokoniara.kokoMod.modules;
 
 import me.kokoniara.kokoMod.helpers.util;
+import me.kokoniara.kokoMod.kokoMod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import static me.kokoniara.kokoMod.kokoMod.toggleSprintStatus;
+
 
 public class toggleSprint {
+    public static boolean toggled;
     private Minecraft client = Minecraft.getMinecraft();
     private long lastClick;
     private double speed = 300;
 
     @SubscribeEvent
     public void onPlayerTick(TickEvent.PlayerTickEvent e){
-        if(toggleSprintStatus == true) {
+        if(toggled) {
             if(System.currentTimeMillis() - lastClick > speed){
                 lastClick = System.currentTimeMillis();
                 if(!client.thePlayer.isSprinting()){

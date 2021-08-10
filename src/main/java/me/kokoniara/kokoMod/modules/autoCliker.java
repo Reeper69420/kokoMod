@@ -1,6 +1,7 @@
 package me.kokoniara.kokoMod.modules;
 
 import me.kokoniara.kokoMod.helpers.util;
+import me.kokoniara.kokoMod.kokoMod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.common.MinecraftForge;
@@ -10,9 +11,8 @@ import org.lwjgl.input.Mouse;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-import static me.kokoniara.kokoMod.kokoMod.*;
-
 public class autoCliker {
+    public static boolean toggled;
     public static int minCpsAutoclicker = 20;
     public static int maxCpsAutoclicker = 22;
 
@@ -29,7 +29,7 @@ public class autoCliker {
 
     @SubscribeEvent
     public void onTick(TickEvent.RenderTickEvent e) {
-        if(autoClikerStatus){
+        if(toggled){
             if (Mouse.isButtonDown(1)) {
                 if (System.currentTimeMillis() - lastClick > speed * 1000) {
                     lastClick = System.currentTimeMillis();

@@ -16,6 +16,8 @@ import org.lwjgl.input.Mouse;
 
 public class farmReady {
     private Minecraft client = Minecraft.getMinecraft();
+    public boolean toggled;
+
     GuiNotif notifier = new GuiNotif();
     private long temptime;
 
@@ -31,7 +33,7 @@ public class farmReady {
 
     @SubscribeEvent
     public void onTick(TickEvent.RenderTickEvent e) {
-        if(kokoMod.caneFarmHelperStatus){
+        if(toggled){
 
 //            //toggles the rmb, there is a time so it doesnt spam
 //            if (Mouse.isButtonDown(0)) {
