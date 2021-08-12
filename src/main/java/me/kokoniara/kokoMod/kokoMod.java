@@ -1,26 +1,47 @@
 package me.kokoniara.kokoMod;
 
+import org.lwjgl.input.Keyboard;
+
+import me.kokoniara.kokoMod.clickgui.ClickGui;
+import me.kokoniara.kokoMod.module.Module;
+import me.kokoniara.kokoMod.module.ModuleManager;
+import me.kokoniara.kokoMod.settings.SettingsManager;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import org.lwjgl.opengl.Display;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 
-@Mod(modid = kokoMod.MODID, version = kokoMod.VERSION)
-public class kokoMod {
-    public static final String MODID = "kokoMod";
-    public static final String VERSION = "1.0";
-
-    public static objects objectsi = new objects();
-
-    private static void updateTitle(){
-        Display.setTitle("Kokoclient V69.420");
+public class kokoMod
+{
+    public static kokoMod instance;
+    public ModuleManager moduleManager;
+    public SettingsManager settingsManager;
+    public ClickGui clickGui;
+    
+    public void init() {
+    	MinecraftForge.EVENT_BUS.register(this);
+    	settingsManager = new SettingsManager();
+    	moduleManager = new ModuleManager();
+    	clickGui = new ClickGui();
     }
-
-
-    @EventHandler
-    public static void Init(FMLPreInitializationEvent event) {
-        updateTitle();
-        MinecraftForge.EVENT_BUS.register(objectsi.keyBindinstance);
+    
+    @SubscribeEvent
+    public void key(KeyInputEvent e) {
+    	if (Minecraft.getMinecraft().theWorld == null || Minecraft.getMinecraft().thePlayer == null)
+    		return; 
+    	try {
+             if (Keyboard.isCreated()) {
+                 if (Keyboard.getEventKeyState()) {
+                     int keyCode = Keyboard.getEventKey();
+                     if (keyCode <= 0)
+                    	 return;
+                     for (Module m : moduleManager.modules) {
+                    	 if (m.getKey() == keyCode && keyCode > 0) {
+                    		 m.toggle();
+                    	 }
+                     }
+                 }
+             }
+         } catch (Exception q) { q.printStackTrace(); }
     }
 }

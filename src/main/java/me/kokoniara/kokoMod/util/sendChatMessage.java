@@ -1,11 +1,11 @@
-package me.kokoniara.kokoMod.helpers;
+package me.kokoniara.kokoMod.util;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
-import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 
-public class util {
+public class sendChatMessage {
     private static final String MESSAGE_PREFIX = "[§bKokomods§f]";
 
     public static synchronized void sendClientMessage(String text, boolean prefix) {
