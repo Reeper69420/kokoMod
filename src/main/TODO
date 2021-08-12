@@ -1,0 +1,4 @@
+TODO:
+    1:make the click gui call the save config method with the updated variables
+    2:finish hard codding all settings to config menager or
+    3:try thikinh of a access setting atrubute from code and not hardcoding a temp value in configMenager and assingng the prop to the temp then syncing it with the setting object

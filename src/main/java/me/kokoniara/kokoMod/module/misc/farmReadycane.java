@@ -86,7 +86,7 @@ public class farmReadycane extends Module {
     }
     @SubscribeEvent
     public void onUnloadWorld(WorldEvent.Unload event) {
-        if(kokoMod.instance.settingsManager.getSettingByName(this, "farmready cane unload on world change").getValBoolean()){
+        if(kokoMod.instance.settingsManager.getSettingByName("farmready cane unload on world change").getValBoolean()){
             super.setToggled(false);
             sendChatMessage.sendClientMessage(" farmReady-cane was unloaded because you switched worlds", true);
         }

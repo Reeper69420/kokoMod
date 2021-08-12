@@ -50,8 +50,8 @@ public class RmbAutoCliker extends Module {
     }
 
     private void updateVals() {
-        min = kokoMod.instance.settingsManager.getSettingByName(this, "RbmMinCPS").getValDouble();
-        max = kokoMod.instance.settingsManager.getSettingByName(this, "RbmMaxCPS").getValDouble();
+        min = kokoMod.instance.settingsManager.getSettingByName("RbmMinCPS").getValDouble();
+        max = kokoMod.instance.settingsManager.getSettingByName("RbmMaxCPS").getValDouble();
 
         if (min >= max) {
             max = min + 1;

@@ -28,7 +28,7 @@ public class iWillcancelYouOnTwitter extends Module {
     @Override
     public void onEnable(){
         super.onEnable();
-        speed = kokoMod.instance.settingsManager.getSettingByName(this, "cancel speed").getValDouble();
+        speed = kokoMod.instance.settingsManager.getSettingByName("cancel speed").getValDouble();
         lastSpam = System.currentTimeMillis();
         sendChatMessage.sendClientMessage("iwillcancelyou enabled", true);
     }

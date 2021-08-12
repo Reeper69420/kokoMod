@@ -3,6 +3,7 @@ package me.kokoniara.kokoMod.settings;
 import java.util.ArrayList;
 
 import me.kokoniara.kokoMod.module.Module;
+import me.kokoniara.kokoMod.util.configUtil.configMenager;
 
 
 /**
@@ -15,6 +16,8 @@ import me.kokoniara.kokoMod.module.Module;
 public class SettingsManager {
 	
 	private ArrayList<Setting> settings;
+
+	private configMenager configMenager = new configMenager();
 	
 	public SettingsManager(){
 		this.settings = new ArrayList<Setting>();
@@ -26,6 +29,14 @@ public class SettingsManager {
 	
 	public ArrayList<Setting> getSettings(){
 		return this.settings;
+	}
+
+	public void putSettings(ArrayList<Setting> a){
+		settings = a;
+	}
+
+	public void settingsSaveToConfigCall(){
+		configMenager.syncConfig();
 	}
 	
 	public ArrayList<Setting> getSettingsByMod(Module mod){
@@ -41,7 +52,8 @@ public class SettingsManager {
 		return out;
 	}
 	
-	public Setting getSettingByName(Module mod, String name){
+	public Setting getSettingByName(String name){
+		configMenager.syncConfig();
 		for(Setting set : getSettings()){
 			if(set.getName().equalsIgnoreCase(name)){
 				return set;
@@ -50,5 +62,7 @@ public class SettingsManager {
 		System.err.println("[Tutorial] Error Setting NOT found: '" + name +"'!");
 		return null;
 	}
+
+
 
 }

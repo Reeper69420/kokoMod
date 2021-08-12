@@ -50,8 +50,8 @@ public class LmbAutoCliker extends Module {
 	}
 
 	private void updateVals() {
-		min = kokoMod.instance.settingsManager.getSettingByName(this, "LbmMinCPS").getValDouble();
-		max = kokoMod.instance.settingsManager.getSettingByName(this, "LbmMaxCPS").getValDouble();
+		min = kokoMod.instance.settingsManager.getSettingByName("LbmMinCPS").getValDouble();
+		max = kokoMod.instance.settingsManager.getSettingByName("LbmMaxCPS").getValDouble();
 
 		if (min >= max) {
 			max = min + 1;

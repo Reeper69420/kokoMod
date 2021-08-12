@@ -3,6 +3,8 @@ package me.kokoniara.kokoMod.settings;
 import java.util.ArrayList;
 
 import me.kokoniara.kokoMod.module.Module;
+import me.kokoniara.kokoMod.util.configUtil.configMenager;
+import me.kokoniara.kokoMod.util.configUtil.configValue;
 
 /**
  *  Made by HeroCode
@@ -11,8 +13,12 @@ import me.kokoniara.kokoMod.module.Module;
  *
  *  @author HeroCode
  */
+
 public class Setting {
-	
+
+
+	private configValue configValue;
+
 	private String name;
 	private Module parent;
 	private String mode;
@@ -41,6 +47,7 @@ public class Setting {
 		this.parent = parent;
 		this.bval = bval;
 		this.mode = "Check";
+		configValue = new configValue(name, bval);
 	}
 	
 	public Setting(String name, Module parent, double dval, double min, double max, boolean onlyint){
