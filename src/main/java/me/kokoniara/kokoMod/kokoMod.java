@@ -19,6 +19,7 @@ public class kokoMod
     public ClickGui clickGui;
     
     public void init() {
+        
     	MinecraftForge.EVENT_BUS.register(this);
     	settingsManager = new SettingsManager();
     	moduleManager = new ModuleManager();
