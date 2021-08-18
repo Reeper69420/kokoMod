@@ -12,9 +12,8 @@ public class iWillcancelYouOnTwitter extends Module {
     private long lastSpam;
     private double speed;
     public iWillcancelYouOnTwitter(){
-        super("twitterWhiteGirls", "white twitter girls are the downfal on sociaty", Category.PLAYER);
-        kokoMod.instance.settingsManager.rSetting(new Setting("cancel speed", this, 12, 1, 20, false));
-
+        super("twitterWhiteGirls", "white twitter girls are the downfal on sociaty", Category.PLAYER, true);
+        kokoMod.instance.settingsManager.rSetting(new Setting("cancel speed", this, 12, 1, 20, true));
     }
 
     @SubscribeEvent

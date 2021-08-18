@@ -26,6 +26,7 @@ public class ModuleManager {
 		this.modules.add(new Sprint());
 		this.modules.add(new BatEsp());
 		this.modules.add(new farmReadycane());
+
 	}
 	
 	public Module getModule(String name) {

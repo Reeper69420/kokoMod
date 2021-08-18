@@ -1,25 +1,55 @@
 package me.kokoniara.kokoMod.module;
 
+import me.kokoniara.kokoMod.config.configObject;
+import me.kokoniara.kokoMod.kokoMod;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.ConfigCategory;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
+
+import static me.kokoniara.kokoMod.main.config;
+
+import java.util.UUID;
+
+import static me.kokoniara.kokoMod.config.confgValueType.KEYBIND;
 
 public class Module {
+	final String uuid = UUID.randomUUID().toString().replace("-", "");
 
 	protected static Minecraft mc = Minecraft.getMinecraft();
 	
 	private String name, description;
 	private int key;
+
+
 	private Category category;
 	private boolean toggled;
 	public boolean visible = true;
+	private boolean keybindEnabled = false;
+	private Property keybindProp;
 	
-	public Module(String name, String description, Category category) {
+	public Module(String name, String description, Category category,boolean keybindEnabled) {
 		super();
 		this.name = name;
 		this.description = description;
-		this.key = 0;
+		this.key = key;
+		this.keybindEnabled = keybindEnabled;
+		if(keybindEnabled){
+			try{
+				config.load();
+				keybindProp = config.get(Configuration.CATEGORY_GENERAL,
+						this.name + "-keybind",
+						0);
+				this.key = keybindProp.getInt();
+				config.save();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
 		this.category = category;
 		this.toggled = false;
+
 	}
 
 	public String getDescription() {
@@ -31,11 +61,15 @@ public class Module {
 	}
 
 	public int getKey() {
-		return key;
+		return this.key;
 	}
 
 	public void setKey(int key) {
 		this.key = key;
+		if(keybindEnabled){
+			config.getCategory(Configuration.CATEGORY_GENERAL).get(this.name + "-keybind").set(key);
+			config.save();
+		}
 	}
 
 	public boolean isToggled() {

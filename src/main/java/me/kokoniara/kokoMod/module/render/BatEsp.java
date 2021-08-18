@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class BatEsp extends Module {
 
     public BatEsp(){
-        super("BatEsp", "shows location of bats", Category.RENDER);
+        super("BatEsp", "shows location of bats", Category.RENDER, true);
     }
 
     @SubscribeEvent

@@ -24,7 +24,7 @@ public class LmbAutoCliker extends Module {
 	private double max;
 
 	public LmbAutoCliker() {
-		super("LmbAutoClicker", "Automatically clicks when you hold down left click", Category.COMBAT);
+		super("LmbAutoClicker", "Automatically clicks when you hold down left click", Category.COMBAT, true);
 
 		kokoMod.instance.settingsManager.rSetting(new Setting("LbmMinCPS", this, 8, 1, 20, false));
 		kokoMod.instance.settingsManager.rSetting(new Setting("LbmMaxCPS", this, 12, 1, 20, false));

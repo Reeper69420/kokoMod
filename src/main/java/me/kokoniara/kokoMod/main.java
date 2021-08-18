@@ -18,6 +18,7 @@ public class main {
     public static void preInit(FMLPreInitializationEvent event){
         config = new Configuration(event.getSuggestedConfigurationFile());
     }
+
     @EventHandler
     public static void Init(FMLPreInitializationEvent event) {
         updateWidowTitle.updateTitle("Kokoclient V69.420");

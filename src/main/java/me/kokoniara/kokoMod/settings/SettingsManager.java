@@ -2,8 +2,14 @@ package me.kokoniara.kokoMod.settings;
 
 import java.util.ArrayList;
 
+import me.kokoniara.kokoMod.config.configObject;
+import me.kokoniara.kokoMod.kokoMod;
 import me.kokoniara.kokoMod.module.Module;
-import me.kokoniara.kokoMod.util.configUtil.configMenager;
+import me.kokoniara.kokoMod.config.configMenager;
+
+import static me.kokoniara.kokoMod.config.confgValueType.BOOLEAN;
+import static me.kokoniara.kokoMod.config.confgValueType.DOUBLE;
+import static me.kokoniara.kokoMod.main.config;
 
 
 /**
@@ -17,7 +23,6 @@ public class SettingsManager {
 	
 	private ArrayList<Setting> settings;
 
-	private configMenager configMenager = new configMenager();
 	
 	public SettingsManager(){
 		this.settings = new ArrayList<Setting>();
@@ -25,6 +30,10 @@ public class SettingsManager {
 	
 	public void rSetting(Setting in){
 		this.settings.add(in);
+	}
+
+	public void updateSetting(){
+
 	}
 	
 	public ArrayList<Setting> getSettings(){
@@ -35,10 +44,6 @@ public class SettingsManager {
 		settings = a;
 	}
 
-	public void settingsSaveToConfigCall(){
-		configMenager.syncConfig();
-	}
-	
 	public ArrayList<Setting> getSettingsByMod(Module mod){
 		ArrayList<Setting> out = new ArrayList<Setting>();
 		for(Setting s : getSettings()){
@@ -53,7 +58,6 @@ public class SettingsManager {
 	}
 	
 	public Setting getSettingByName(String name){
-		configMenager.syncConfig();
 		for(Setting set : getSettings()){
 			if(set.getName().equalsIgnoreCase(name)){
 				return set;

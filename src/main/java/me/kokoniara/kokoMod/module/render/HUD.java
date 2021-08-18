@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class HUD extends Module {
 
 	public HUD() {
-		super("HUD", "Draws the module list on your screen", Category.RENDER);
+		super("HUD", "Draws the module list on your screen", Category.RENDER, false);
 	}
 	
 	@SubscribeEvent

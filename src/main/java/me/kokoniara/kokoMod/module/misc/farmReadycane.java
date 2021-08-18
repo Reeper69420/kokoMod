@@ -18,8 +18,7 @@ import org.lwjgl.input.Mouse;
 public class farmReadycane extends Module {
 
     public farmReadycane(){
-        super("farmReady", "gets you ready to farm cane", Category.MISC);
-        kokoMod.instance.settingsManager.rSetting(new Setting("unload on world change", this , true));
+        super("farmReady", "gets you ready to farm cane", Category.MISC, true);
     }
     private Minecraft client = Minecraft.getMinecraft();
     public boolean toggled;
@@ -43,17 +42,18 @@ public class farmReadycane extends Module {
                 notifier.GuiNotif(client, "farm helper will lock your head postion on the right angle");
             }
 
-
-            updatePitchAndYaw();
-
-            headlockCondition = checkHeadCondition(playerPitch, playerYaw);
-
-            if(headlockCondition){
+            if(!headlockCondition){
+                //updatePitchAndYaw();
+                playerYaw = Math.round(client.thePlayer.rotationYaw);
+                playerPitch = Math.round(client.thePlayer.rotationPitch);
+                boolean temp = playerYaw % 45 == 0 && playerPitch == 0;
+                headlockCondition = temp;
+                //headlockCondition = checkHeadCondition(playerPitch, playerYaw);
+            }else{
                 Mouse.getDX();
                 Mouse.getDY();
                 client.mouseHelper.deltaX = client.mouseHelper.deltaY = 0;
             }
-
 
     }
 
@@ -82,13 +82,10 @@ public class farmReadycane extends Module {
         headlockCondition = false;
         playerYaw = playerPitch = 0;
         sendChatMessage.sendClientMessage(" farmReady-cane disabled", true);
-        //KeyBinding.setKeyBindState(rmbKeyCode, false);
     }
     @SubscribeEvent
     public void onUnloadWorld(WorldEvent.Unload event) {
-        if(kokoMod.instance.settingsManager.getSettingByName("farmready cane unload on world change").getValBoolean()){
-            super.setToggled(false);
-            sendChatMessage.sendClientMessage(" farmReady-cane was unloaded because you switched worlds", true);
-        }
+        super.setToggled(false);
+        sendChatMessage.sendClientMessage(" farmReady-cane was unloaded because you switched worlds", true);
     }
 }

@@ -24,7 +24,7 @@ public class RmbAutoCliker extends Module {
     private double max;
 
     public RmbAutoCliker() {
-        super("RmbAutoClicker", "Automatically clicks when you hold down right click", Category.COMBAT);
+        super("RmbAutoClicker", "Automatically clicks when you hold down right click", Category.COMBAT, true);
 
         kokoMod.instance.settingsManager.rSetting(new Setting("RbmMinCPS", this, 8, 1, 20, false));
         kokoMod.instance.settingsManager.rSetting(new Setting("RbmMaxCPS", this, 12, 1, 20, false));
