@@ -1,8 +1,6 @@
 package me.kokoniara.kokoMod.module.misc;
 
-import me.kokoniara.kokoMod.kokoMod;
-import me.kokoniara.kokoMod.settings.Setting;
-import me.kokoniara.kokoMod.util.GuiNotif;
+import me.kokoniara.kokoMod.renderEngine.modules.drawCenterString;
 import me.kokoniara.kokoMod.module.Category;
 import me.kokoniara.kokoMod.module.Module;
 import me.kokoniara.kokoMod.util.sendChatMessage;
@@ -18,12 +16,12 @@ import org.lwjgl.input.Mouse;
 public class farmReadycane extends Module {
 
     public farmReadycane(){
-        super("farmReady", "gets you ready to farm cane", Category.MISC, true);
+        super("farmReady", "gets you ready to farm cane", Category.MISC, true, "farmReady-cane enabled", "farmReady-cane disabled");
     }
     private Minecraft client = Minecraft.getMinecraft();
     public boolean toggled;
 
-    GuiNotif notifier = new GuiNotif();
+    drawCenterString notifier = new drawCenterString();
     private long temptime;
 
 
@@ -72,8 +70,6 @@ public class farmReadycane extends Module {
     public void onEnable() {
         super.onEnable();
         temptime = System.currentTimeMillis();
-        //mouseToggleTimer = System.currentTimeMillis();
-        sendChatMessage.sendClientMessage(" farmReady-cane enabled", true);
     }
 
     @Override
@@ -81,7 +77,6 @@ public class farmReadycane extends Module {
         super.onDisable();
         headlockCondition = false;
         playerYaw = playerPitch = 0;
-        sendChatMessage.sendClientMessage(" farmReady-cane disabled", true);
     }
     @SubscribeEvent
     public void onUnloadWorld(WorldEvent.Unload event) {

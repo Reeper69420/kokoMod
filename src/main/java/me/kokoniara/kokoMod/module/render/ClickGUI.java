@@ -9,7 +9,7 @@ import me.kokoniara.kokoMod.module.Module;
 public class ClickGUI extends Module {
 
 	public ClickGUI() {
-		super("ClickGUI", "Allows you to enable and disable modules", Category.RENDER, false);
+		super("ClickGUI", "Allows you to enable and disable modules", Category.RENDER);
 		this.setKey(Keyboard.KEY_RSHIFT);
 	}
 	
