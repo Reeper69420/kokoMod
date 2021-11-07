@@ -1,4 +1,4 @@
-package me.kokoniara.kokoMod.util;
+package me.kokoniara.kokoMod.renderEngine.modules;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
